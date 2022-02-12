@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="22a5e477-ba25-4547-ac9d-e14a91a1b65f">
+	<property name="ireport.zoom" value="1.4641000000000033"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="8"/>
+	<queryString>
+		<![CDATA[SELECT
+  clientes.ID_Cliente,
+  clientes.Nombre,
+  clientes.Direccion,
+  clientes.Ciudad,
+  pedidos.ID_Pedido, 
+  pedidos.Fecha_Pedido,
+  detalle_pedidos.Unidades,
+  detalle_pedidos.Precio,
+    (detalle_pedidos.Unidades *  detalle_pedidos.Precio) as precio_detalle
+FROM clientes
+JOIN pedidos
+  ON pedidos.ID_Cliente = clientes.ID_Cliente
+JOIN detalle_pedidos
+  ON pedidos.ID_Pedido = detalle_pedidos.ID_Pedido;]]>
+	</queryString>
+	<field name="ID_Cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_Pedido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha_Pedido" class="java.time.LocalDateTime">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Unidades" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio_detalle" class="java.math.BigDecimal"/>
+	<variable name="Unidades_1" class="java.lang.Integer" resetType="Group" resetGroup="Pedidos" calculation="Sum">
+		<variableExpression><![CDATA[$F{Unidades}]]></variableExpression>
+	</variable>
+	<variable name="Precio_1" class="java.math.BigDecimal" resetType="Group" resetGroup="Pedidos" calculation="Sum">
+		<variableExpression><![CDATA[$F{Precio}]]></variableExpression>
+	</variable>
+	<variable name="precio_detalle_1" class="java.math.BigDecimal" resetType="Group" resetGroup="Pedidos" calculation="Sum">
+		<variableExpression><![CDATA[$F{precio_detalle}]]></variableExpression>
+	</variable>
+	<variable name="precio_detalle_2" class="java.math.BigDecimal" resetType="Group" resetGroup="Pedidos" calculation="Sum">
+		<variableExpression><![CDATA[$F{precio_detalle}]]></variableExpression>
+	</variable>
+	<group name="Clientes">
+		<groupExpression><![CDATA[$F{ID_Cliente}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement isPrintRepeatedValues="false" x="36" y="5" width="176" height="15" uuid="56ee0115-a511-4543-8dd3-4c30649e9637"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="231" y="5" width="153" height="15" uuid="718f5b46-47e7-4dd2-a761-87d4a636f7e6"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{Direccion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="395" y="5" width="151" height="15" uuid="eedf8120-80c6-40f0-ba0c-6a82fc0d33f6"/>
+					<textFieldExpression><![CDATA[$F{Ciudad}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="384" y="0" width="11" height="20" uuid="80f5059e-fe08-4abc-abad-e361f0fc7851"/>
+					<text><![CDATA[ - ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="29" y="19" width="466" height="1" uuid="7b044ead-0325-482a-8699-c52d38d44c46"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21"/>
+		</groupFooter>
+	</group>
+	<group name="Pedidos">
+		<groupExpression><![CDATA[$F{ID_Pedido}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="36" y="2" width="79" height="18" uuid="4c4ea7f3-4855-4a3a-ac19-a2f8bdeb30ef"/>
+					<textFieldExpression><![CDATA[$F{ID_Pedido}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="115" y="2" width="97" height="18" uuid="243d0985-0bef-4fd8-9bd8-b8583146ef88"/>
+					<textFieldExpression><![CDATA[""+$F{Fecha_Pedido}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Pedidos">
+					<reportElement x="212" y="2" width="100" height="18" uuid="35a64d67-fd5e-4d35-a7d2-c4cdc1ee1493"/>
+					<textFieldExpression><![CDATA[$V{precio_detalle_2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="29" y="0" width="1" height="20" uuid="b8012493-94c4-4593-be72-5cbf26e095ee"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="11" width="413" height="56" uuid="ff316bcd-7b91-4961-b5d5-6bb087e05964"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total pedidos clientes]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="17" y="59" width="413" height="20" uuid="bec00b5e-d207-4e9f-881e-4fb651e4517a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="416" y="0" width="80" height="20" uuid="38ebaa0c-1881-49b3-9d13-6a928a4d04b0"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="496" y="0" width="59" height="20" uuid="1f5f40ee-aae8-4620-bcaa-46c9d900957b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="33" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="26" splitType="Stretch"/>
+	</summary>
+</jasperReport>
