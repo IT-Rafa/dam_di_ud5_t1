@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
@@ -82,7 +84,11 @@ public class InitReport extends javax.swing.JFrame {
             }
         });
 
-        selectClient_NoSub_jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectClient_NoSub_jComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectClient_NoSub_jComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout noSub_jPanelLayout = new javax.swing.GroupLayout(noSub_jPanel);
         noSub_jPanel.setLayout(noSub_jPanelLayout);
@@ -242,7 +248,24 @@ public class InitReport extends javax.swing.JFrame {
     }//GEN-LAST:event_show_AllFact_NoSub_jButtonActionPerformed
 
     private void show_OneFact_NoSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_OneFact_NoSub_jButtonActionPerformed
+        try {
+            Connection conn = Model.getConection();
 
+            String pathReport = "src\\Reports\\facturas_One.jasper";
+            Map param = new HashMap();
+            param.put("cliente", selectClient_NoSub_jComboBox.getSelectedItem().toString());
+            JasperReport oneFacturasReport = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
+
+            JasperPrint jprint = JasperFillManager.fillReport(pathReport, null, conn);
+            JasperViewer jaspView = new JasperViewer(jprint, false);
+
+            jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+            jaspView.setVisible(true);
+
+        } catch (JRException ex) {
+            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_show_OneFact_NoSub_jButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -266,6 +289,11 @@ public class InitReport extends javax.swing.JFrame {
     private void exit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exit_jButtonActionPerformed
+
+    private void selectClient_NoSub_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClient_NoSub_jComboBoxActionPerformed
+       System.out.println(selectClient_NoSub_jComboBox.getSelectedItem().toString());             
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectClient_NoSub_jComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
