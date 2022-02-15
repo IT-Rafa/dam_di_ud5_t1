@@ -253,10 +253,14 @@ public class InitReport extends javax.swing.JFrame {
 
             String pathReport = "src\\Reports\\facturas_One.jasper";
             Map param = new HashMap();
-            param.put("cliente", selectClient_NoSub_jComboBox.getSelectedItem().toString());
+            String clienteInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
+            int i = clienteInCombo.indexOf(" | ");
+            Integer id = Integer.parseInt(clienteInCombo.substring(0, i));
+            param.put("idToFind", id);
+
             JasperReport oneFacturasReport = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
 
-            JasperPrint jprint = JasperFillManager.fillReport(pathReport, null, conn);
+            JasperPrint jprint = JasperFillManager.fillReport(pathReport, param, conn);
             JasperViewer jaspView = new JasperViewer(jprint, false);
 
             jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -274,12 +278,13 @@ public class InitReport extends javax.swing.JFrame {
         try {
             Connection conn = Model.getConection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT Nombre FROM clientes");
-            
-            while(rs.next()){
+            ResultSet rs = st.executeQuery("SELECT ID_Cliente, Nombre FROM clientes");
+
+            while (rs.next()) {
+                int cliID = rs.getInt("ID_Cliente");
                 String cliName = rs.getString("Nombre");
-                selectClient_NoSub_jComboBox.addItem(cliName);
-                selectClient_WithSub_jComboBox.addItem(cliName);
+                selectClient_NoSub_jComboBox.addItem(cliID + " | " + cliName);
+                selectClient_WithSub_jComboBox.addItem(cliID + " | " + cliName);
             }
         } catch (SQLException ex) {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
@@ -289,10 +294,22 @@ public class InitReport extends javax.swing.JFrame {
     private void exit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exit_jButtonActionPerformed
-
+    /**
+     *
+     * @param evt
+     * @see formWindowOpened
+     */
     private void selectClient_NoSub_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClient_NoSub_jComboBoxActionPerformed
-       System.out.println(selectClient_NoSub_jComboBox.getSelectedItem().toString());             
-        // TODO add your handling code here:
+        String nameInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
+        int i = nameInCombo.indexOf(" | ");
+
+        String realName = (String) nameInCombo.subSequence(i + 3, nameInCombo.length());
+        String clienteInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
+
+        int id = Integer.parseInt(clienteInCombo.substring(0, i));
+        
+        System.out.println(realName);
+        System.out.println(id);
     }//GEN-LAST:event_selectClient_NoSub_jComboBoxActionPerformed
 
     /**

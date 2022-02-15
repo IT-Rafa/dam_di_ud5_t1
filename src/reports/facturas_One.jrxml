@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas_One" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="22a5e477-ba25-4547-ac9d-e14a91a1b65f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas_One" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="22a5e477-ba25-4547-ac9d-e14a91a1b65f">
 	<property name="ireport.zoom" value="1.6105100000000239"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="cliente" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	<parameter name="idToFind" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[3]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -17,12 +17,13 @@
   str_to_date(pedidos.Fecha_Pedido,'%Y-%m-%d') AS PED_DATE,
   detalle_pedidos.Unidades,
   detalle_pedidos.Precio,
-    (detalle_pedidos.Unidades *  detalle_pedidos.Precio) as precio_detalle
+    (detalle_pedidos.Unidades * detalle_pedidos.Precio) as precio_detalle
 FROM clientes
 LEFT JOIN pedidos
   ON pedidos.ID_Cliente = clientes.ID_Cliente
 LEFT JOIN detalle_pedidos
-  ON pedidos.ID_Pedido = detalle_pedidos.ID_Pedido;]]>
+  ON pedidos.ID_Pedido = detalle_pedidos.ID_Pedido
+WHERE clientes.ID_Cliente = $P!{idToFind}]]>
 	</queryString>
 	<field name="ID_Cliente" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -261,7 +262,7 @@ LEFT JOIN detalle_pedidos
 		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="33" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="28" splitType="Stretch"/>
