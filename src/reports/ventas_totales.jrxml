@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="c3853ff8-69ba-4a74-98b3-b7b9f6c8f302">
 	<property name="ireport.zoom" value="1.2396694214876034"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="688"/>
+	<property name="ireport.y" value="179"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
 articulos.Id_articulo,
@@ -136,22 +136,26 @@ LEFT JOIN detalle_pedidos
 	<summary>
 		<band height="657" splitType="Stretch">
 			<bar3DChart>
-				<chart evaluationTime="Report" renderType="draw" theme="aegean">
-					<reportElement stretchType="RelativeToBandHeight" x="19" y="18" width="508" height="622" uuid="c11d432e-b029-4370-b881-1351fb446e31"/>
-					<chartTitle/>
+				<chart evaluationTime="Report" renderType="draw" theme="default">
+					<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="19" y="18" width="508" height="622" isPrintWhenDetailOverflows="true" uuid="c11d432e-b029-4370-b881-1351fb446e31"/>
+					<box topPadding="5" leftPadding="5" bottomPadding="5" rightPadding="5"/>
+					<chartTitle>
+						<font size="24" isBold="true"/>
+						<titleExpression><![CDATA["Gráfico Artículos"]]></titleExpression>
+					</chartTitle>
 					<chartSubtitle/>
-					<chartLegend>
-						<font size="8"/>
+					<chartLegend backgroundColor="#CCCCFF" position="Bottom">
+						<font size="10"/>
 					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
-						<seriesExpression><![CDATA[$F{Id_articulo}]]></seriesExpression>
+						<seriesExpression><![CDATA[$F{Id_articulo} + ": " + $F{Descripcion}]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{Descripcion}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{Unidades}]]></valueExpression>
+						<valueExpression><![CDATA[$V{Unidades_1}]]></valueExpression>
 					</categorySeries>
 				</categoryDataset>
-				<bar3DPlot xOffset="5.0" yOffset="5.0">
+				<bar3DPlot xOffset="10.0" yOffset="30.0">
 					<plot orientation="Horizontal" labelRotation="30.0"/>
 					<itemLabel/>
 					<categoryAxisFormat labelRotation="30.0">
@@ -159,10 +163,13 @@ LEFT JOIN detalle_pedidos
 							<labelFont>
 								<font size="8" isBold="true"/>
 							</labelFont>
+							<tickLabelFont>
+								<font isBold="true"/>
+							</tickLabelFont>
 						</axisFormat>
 					</categoryAxisFormat>
 					<valueAxisFormat>
-						<axisFormat verticalTickLabels="false"/>
+						<axisFormat verticalTickLabels="true" axisLineColor="#FFFFFF"/>
 					</valueAxisFormat>
 					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
 					<rangeAxisMaxValueExpression><![CDATA[1500]]></rangeAxisMaxValueExpression>

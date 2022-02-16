@@ -269,7 +269,7 @@ public class InitReport extends javax.swing.JFrame {
         try {
             Connection conn = Model.getConection();
 
-            String pathReport = "src\\Reports\\facturas_One.jasper";
+            String pathReport = "src\\Reports\\facturas_Cli.jasper";
             Map param = new HashMap();
             String clienteInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
             int i = clienteInCombo.indexOf(" | ");
