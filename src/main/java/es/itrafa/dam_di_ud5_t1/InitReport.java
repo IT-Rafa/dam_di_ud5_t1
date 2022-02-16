@@ -43,15 +43,17 @@ public class InitReport extends javax.swing.JFrame {
 
         mainTitle_jLabel = new javax.swing.JLabel();
         border_jPanel = new javax.swing.JPanel();
+        Listados_jTabbedPane = new javax.swing.JTabbedPane();
         noSub_jPanel = new javax.swing.JPanel();
-        show_AllFact_NoSub_jButton = new javax.swing.JButton();
-        show_OneFact_NoSub_jButton = new javax.swing.JButton();
+        factNoSub_jPanel = new javax.swing.JPanel();
+        show_allFact_noSub_jButton = new javax.swing.JButton();
         selectClient_NoSub_jComboBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        show_FactCli_NoSub_jButton = new javax.swing.JButton();
+        artNoSubjPanel = new javax.swing.JPanel();
+        ventas_totales_jButton = new javax.swing.JButton();
         withSub_jPanel = new javax.swing.JPanel();
+        noSub_jPanel1 = new javax.swing.JPanel();
         show_AllFact_WithSub_jButton = new javax.swing.JButton();
-        show_OneFact_WithSub_jButton = new javax.swing.JButton();
-        selectClient_WithSub_jComboBox = new javax.swing.JComboBox<>();
         exit_jButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,21 +73,15 @@ public class InitReport extends javax.swing.JFrame {
 
         border_jPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        noSub_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Sin subinformes"));
+        Listados_jTabbedPane.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
 
-        show_AllFact_NoSub_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        show_AllFact_NoSub_jButton.setText("Todos Clientes");
-        show_AllFact_NoSub_jButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_AllFact_NoSub_jButtonActionPerformed(evt);
-            }
-        });
+        factNoSub_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Facturas"));
 
-        show_OneFact_NoSub_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        show_OneFact_NoSub_jButton.setText("Cliente Seleccionado");
-        show_OneFact_NoSub_jButton.addActionListener(new java.awt.event.ActionListener() {
+        show_allFact_noSub_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        show_allFact_noSub_jButton.setText("Todas Facturas");
+        show_allFact_noSub_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_OneFact_NoSub_jButtonActionPerformed(evt);
+                show_allFact_noSub_jButtonActionPerformed(evt);
             }
         });
 
@@ -95,13 +91,64 @@ public class InitReport extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Ventas Totales");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        show_FactCli_NoSub_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        show_FactCli_NoSub_jButton.setText("Facturas por Cliente");
+        show_FactCli_NoSub_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                show_FactCli_NoSub_jButtonActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout factNoSub_jPanelLayout = new javax.swing.GroupLayout(factNoSub_jPanel);
+        factNoSub_jPanel.setLayout(factNoSub_jPanelLayout);
+        factNoSub_jPanelLayout.setHorizontalGroup(
+            factNoSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(factNoSub_jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(factNoSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(show_FactCli_NoSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectClient_NoSub_jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(show_allFact_noSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        factNoSub_jPanelLayout.setVerticalGroup(
+            factNoSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(factNoSub_jPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(show_allFact_noSub_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(show_FactCli_NoSub_jButton)
+                .addContainerGap())
+        );
+
+        artNoSubjPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Artículos"));
+
+        ventas_totales_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ventas_totales_jButton.setText("Ventas Totales");
+        ventas_totales_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ventas_totales_jButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout artNoSubjPanelLayout = new javax.swing.GroupLayout(artNoSubjPanel);
+        artNoSubjPanel.setLayout(artNoSubjPanelLayout);
+        artNoSubjPanelLayout.setHorizontalGroup(
+            artNoSubjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(artNoSubjPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ventas_totales_jButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        artNoSubjPanelLayout.setVerticalGroup(
+            artNoSubjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(artNoSubjPanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(ventas_totales_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout noSub_jPanelLayout = new javax.swing.GroupLayout(noSub_jPanel);
         noSub_jPanel.setLayout(noSub_jPanelLayout);
@@ -109,77 +156,72 @@ public class InitReport extends javax.swing.JFrame {
             noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(noSub_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(show_AllFact_NoSub_jButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addGroup(noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(show_OneFact_NoSub_jButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(noSub_jPanelLayout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(jButton1)
+                .addComponent(factNoSub_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(artNoSubjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         noSub_jPanelLayout.setVerticalGroup(
             noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(noSub_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(show_AllFact_NoSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(noSub_jPanelLayout.createSequentialGroup()
-                        .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(show_OneFact_NoSub_jButton)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addGroup(noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(artNoSubjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(factNoSub_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        withSub_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Con subinformes"));
+        Listados_jTabbedPane.addTab("Sin sub-informes", noSub_jPanel);
+
+        noSub_jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Facturas"));
 
         show_AllFact_WithSub_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        show_AllFact_WithSub_jButton.setText("Todos Clientes");
+        show_AllFact_WithSub_jButton.setText("Todas Facturas");
         show_AllFact_WithSub_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 show_AllFact_WithSub_jButtonActionPerformed(evt);
             }
         });
 
-        show_OneFact_WithSub_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        show_OneFact_WithSub_jButton.setText("Cliente Seleccionado");
-        show_OneFact_WithSub_jButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_OneFact_WithSub_jButtonActionPerformed(evt);
-            }
-        });
-
-        selectClient_WithSub_jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        javax.swing.GroupLayout noSub_jPanel1Layout = new javax.swing.GroupLayout(noSub_jPanel1);
+        noSub_jPanel1.setLayout(noSub_jPanel1Layout);
+        noSub_jPanel1Layout.setHorizontalGroup(
+            noSub_jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+            .addGroup(noSub_jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(noSub_jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(show_AllFact_WithSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        noSub_jPanel1Layout.setVerticalGroup(
+            noSub_jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 151, Short.MAX_VALUE)
+            .addGroup(noSub_jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(noSub_jPanel1Layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(show_AllFact_WithSub_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(50, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout withSub_jPanelLayout = new javax.swing.GroupLayout(withSub_jPanel);
         withSub_jPanel.setLayout(withSub_jPanelLayout);
         withSub_jPanelLayout.setHorizontalGroup(
             withSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(withSub_jPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(show_AllFact_WithSub_jButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addGroup(withSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(show_OneFact_WithSub_jButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectClient_WithSub_jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(117, 117, 117)
+                .addComponent(noSub_jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         withSub_jPanelLayout.setVerticalGroup(
             withSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(withSub_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(withSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(show_AllFact_WithSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(withSub_jPanelLayout.createSequentialGroup()
-                        .addComponent(selectClient_WithSub_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(show_OneFact_WithSub_jButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(noSub_jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        Listados_jTabbedPane.addTab("Con sub-informes", withSub_jPanel);
 
         javax.swing.GroupLayout border_jPanelLayout = new javax.swing.GroupLayout(border_jPanel);
         border_jPanel.setLayout(border_jPanelLayout);
@@ -187,20 +229,19 @@ public class InitReport extends javax.swing.JFrame {
             border_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(border_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(border_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(withSub_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(noSub_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(Listados_jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         border_jPanelLayout.setVerticalGroup(
             border_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(border_jPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(noSub_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(withSub_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(Listados_jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        Listados_jTabbedPane.getAccessibleContext().setAccessibleName("Sin Subinformes");
+        Listados_jTabbedPane.getAccessibleContext().setAccessibleDescription("");
 
         exit_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         exit_jButton.setText("SALIR");
@@ -215,22 +256,24 @@ public class InitReport extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(exit_jButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(mainTitle_jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(border_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exit_jButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(border_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mainTitle_jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTitle_jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(mainTitle_jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(border_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exit_jButton)
                 .addContainerGap())
         );
@@ -238,15 +281,7 @@ public class InitReport extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void show_AllFact_WithSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_AllFact_WithSub_jButtonActionPerformed
-
-    }//GEN-LAST:event_show_AllFact_WithSub_jButtonActionPerformed
-
-    private void show_OneFact_WithSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_OneFact_WithSub_jButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_show_OneFact_WithSub_jButtonActionPerformed
-
-    private void show_AllFact_NoSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_AllFact_NoSub_jButtonActionPerformed
+    private void show_allFact_noSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_allFact_noSub_jButtonActionPerformed
         try {
             Connection conn = Model.getConection();
 
@@ -263,9 +298,9 @@ public class InitReport extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_show_AllFact_NoSub_jButtonActionPerformed
+    }//GEN-LAST:event_show_allFact_noSub_jButtonActionPerformed
 
-    private void show_OneFact_NoSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_OneFact_NoSub_jButtonActionPerformed
+    private void show_FactCli_NoSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_FactCli_NoSub_jButtonActionPerformed
         try {
             Connection conn = Model.getConection();
 
@@ -288,11 +323,10 @@ public class InitReport extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_show_OneFact_NoSub_jButtonActionPerformed
+    }//GEN-LAST:event_show_FactCli_NoSub_jButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         selectClient_NoSub_jComboBox.removeAllItems();
-        selectClient_WithSub_jComboBox.removeAllItems();
         try {
             Connection conn = Model.getConection();
             Statement st = conn.createStatement();
@@ -302,7 +336,6 @@ public class InitReport extends javax.swing.JFrame {
                 int cliID = rs.getInt("ID_Cliente");
                 String cliName = rs.getString("Nombre");
                 selectClient_NoSub_jComboBox.addItem(cliID + " | " + cliName);
-                selectClient_WithSub_jComboBox.addItem(cliID + " | " + cliName);
             }
         } catch (SQLException ex) {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
@@ -330,8 +363,12 @@ public class InitReport extends javax.swing.JFrame {
         System.out.println(id);
     }//GEN-LAST:event_selectClient_NoSub_jComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                try {
+    private void show_AllFact_WithSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_AllFact_WithSub_jButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_show_AllFact_WithSub_jButtonActionPerformed
+
+    private void ventas_totales_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventas_totales_jButtonActionPerformed
+        try {
             Connection conn = Model.getConection();
 
             String pathReport = "src\\Reports\\ventas_totales.jasper";
@@ -347,7 +384,7 @@ public class InitReport extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ventas_totales_jButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,17 +422,19 @@ public class InitReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane Listados_jTabbedPane;
+    private javax.swing.JPanel artNoSubjPanel;
     private javax.swing.JPanel border_jPanel;
     private javax.swing.JButton exit_jButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel factNoSub_jPanel;
     private javax.swing.JLabel mainTitle_jLabel;
     private javax.swing.JPanel noSub_jPanel;
+    private javax.swing.JPanel noSub_jPanel1;
     private javax.swing.JComboBox<String> selectClient_NoSub_jComboBox;
-    private javax.swing.JComboBox<String> selectClient_WithSub_jComboBox;
-    private javax.swing.JButton show_AllFact_NoSub_jButton;
     private javax.swing.JButton show_AllFact_WithSub_jButton;
-    private javax.swing.JButton show_OneFact_NoSub_jButton;
-    private javax.swing.JButton show_OneFact_WithSub_jButton;
+    private javax.swing.JButton show_FactCli_NoSub_jButton;
+    private javax.swing.JButton show_allFact_noSub_jButton;
+    private javax.swing.JButton ventas_totales_jButton;
     private javax.swing.JPanel withSub_jPanel;
     // End of variables declaration//GEN-END:variables
 }

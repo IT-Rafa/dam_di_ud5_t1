@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas_sub_subreport1" language="groovy" pageWidth="21600" pageHeight="802" columnWidth="21600" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="45eb5655-40fb-493e-ac95-9211b8c39499">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM pedidos]]>
+	</queryString>
+	<field name="ID_Pedido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_Cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha_Pedido" class="java.time.LocalDateTime">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="46" y="2" width="100" height="20" uuid="a994a4b2-8041-42d0-9122-c5fb7d137f0a"/>
+				<text><![CDATA[ID_Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="2" width="100" height="20" uuid="6cfabae4-269c-4761-ba42-14241deab52d"/>
+				<text><![CDATA[Fecha_Pedido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="46" y="14" width="100" height="20" uuid="b0455391-f756-4644-8e85-3640d71a9f3f"/>
+				<textFieldExpression><![CDATA[$F{ID_Pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="22" width="100" height="20" uuid="b6f2c2d9-d42a-4bcb-a4df-db8915ce8ec6"/>
+				<textFieldExpression><![CDATA[""+$F{Fecha_Pedido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
