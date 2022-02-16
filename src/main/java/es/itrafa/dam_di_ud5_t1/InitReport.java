@@ -47,11 +47,11 @@ public class InitReport extends javax.swing.JFrame {
         show_AllFact_NoSub_jButton = new javax.swing.JButton();
         show_OneFact_NoSub_jButton = new javax.swing.JButton();
         selectClient_NoSub_jComboBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         withSub_jPanel = new javax.swing.JPanel();
         show_AllFact_WithSub_jButton = new javax.swing.JButton();
         show_OneFact_WithSub_jButton = new javax.swing.JButton();
         selectClient_WithSub_jComboBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         exit_jButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,9 +61,13 @@ public class InitReport extends javax.swing.JFrame {
             }
         });
 
+        mainTitle_jLabel.setBackground(new java.awt.Color(51, 51, 51));
         mainTitle_jLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        mainTitle_jLabel.setForeground(new java.awt.Color(204, 204, 204));
         mainTitle_jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        mainTitle_jLabel.setText("Listados Facturas");
+        mainTitle_jLabel.setText("Listados");
+        mainTitle_jLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mainTitle_jLabel.setOpaque(true);
 
         border_jPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -91,6 +95,14 @@ public class InitReport extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Ventas Totales");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout noSub_jPanelLayout = new javax.swing.GroupLayout(noSub_jPanel);
         noSub_jPanel.setLayout(noSub_jPanelLayout);
         noSub_jPanelLayout.setHorizontalGroup(
@@ -103,18 +115,23 @@ public class InitReport extends javax.swing.JFrame {
                     .addComponent(show_OneFact_NoSub_jButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(noSub_jPanelLayout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         noSub_jPanelLayout.setVerticalGroup(
             noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(noSub_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(noSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(show_AllFact_NoSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(noSub_jPanelLayout.createSequentialGroup()
                         .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(show_OneFact_NoSub_jButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(show_OneFact_NoSub_jButton)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -145,7 +162,7 @@ public class InitReport extends javax.swing.JFrame {
             .addGroup(withSub_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(show_AllFact_WithSub_jButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addGroup(withSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(show_OneFact_WithSub_jButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(selectClient_WithSub_jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,9 +181,6 @@ public class InitReport extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Ventas Totales");
-
         javax.swing.GroupLayout border_jPanelLayout = new javax.swing.GroupLayout(border_jPanel);
         border_jPanel.setLayout(border_jPanelLayout);
         border_jPanelLayout.setHorizontalGroup(
@@ -174,22 +188,16 @@ public class InitReport extends javax.swing.JFrame {
             .addGroup(border_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(border_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(noSub_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(withSub_jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(withSub_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(noSub_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(border_jPanelLayout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         border_jPanelLayout.setVerticalGroup(
             border_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(border_jPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addComponent(noSub_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                .addGap(13, 13, 13)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(withSub_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -219,12 +227,12 @@ public class InitReport extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTitle_jLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 62, Short.MAX_VALUE)
+                .addComponent(mainTitle_jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(border_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exit_jButton)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -321,6 +329,25 @@ public class InitReport extends javax.swing.JFrame {
         System.out.println(realName);
         System.out.println(id);
     }//GEN-LAST:event_selectClient_NoSub_jComboBoxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                try {
+            Connection conn = Model.getConection();
+
+            String pathReport = "src\\Reports\\ventas_totales.jasper";
+            JasperReport allFacturasReport = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
+
+            JasperPrint jprint = JasperFillManager.fillReport(pathReport, null, conn);
+            JasperViewer jaspView = new JasperViewer(jprint, false);
+
+            jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+            jaspView.setVisible(true);
+
+        } catch (JRException ex) {
+            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
