@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec9ed4a1-58cc-410c-a967-a310d44bc577">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas_sub" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec9ed4a1-58cc-410c-a967-a310d44bc577">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -60,10 +60,10 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="9" splitType="Stretch"/>
+		<band height="21" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="111" splitType="Stretch">
+		<band height="52" splitType="Stretch">
 			<textField>
 				<reportElement x="245" y="13" width="263" height="15" uuid="d3e93e4e-4f84-4fb5-a42c-8bd350beb117"/>
 				<textElement textAlignment="Right"/>
@@ -89,19 +89,22 @@
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="119" y="29" width="396" height="37" uuid="09b1f17f-ffc1-49d1-9616-37a3c56cb672"/>
+				<reportElement x="88" y="29" width="427" height="23" uuid="8d75ba8c-58db-4f11-99fc-31abf00f2bb5"/>
+				<subreportParameter name="cliente_id">
+					<subreportParameterExpression><![CDATA[$F{ID_Cliente}]]></subreportParameterExpression>
+				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "facturas_sub_subreport1.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["D:\\source\\dam\\di\\dam_di_ud5_t1\\src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas_sub_subreport1.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="9" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="11" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="12" splitType="Stretch"/>
 	</summary>
 </jasperReport>
