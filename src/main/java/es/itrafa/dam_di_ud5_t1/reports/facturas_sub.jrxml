@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas_sub" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec9ed4a1-58cc-410c-a967-a310d44bc577">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="6.115909044841475"/>
+	<property name="ireport.x" value="2574"/>
+	<property name="ireport.y" value="838"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["D:\\source\\dam\\di\\dam_di_ud5_t1\\src\\Reports\\"]]></defaultValueExpression>
 	</parameter>
@@ -63,14 +63,14 @@
 		<band height="21" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="52" splitType="Stretch">
+		<band height="51" splitType="Stretch">
 			<textField>
 				<reportElement x="245" y="13" width="263" height="15" uuid="d3e93e4e-4f84-4fb5-a42c-8bd350beb117"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{Direccion}+" - " +$F{Ciudad}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="514" y="9" width="1" height="20" uuid="18503d61-6d78-46c5-be20-0119821a6ded"/>
+				<reportElement x="518" y="9" width="1" height="20" uuid="18503d61-6d78-46c5-be20-0119821a6ded"/>
 			</line>
 			<line>
 				<reportElement x="238" y="9" width="1" height="19" uuid="582aa6dd-ad44-4471-b2b5-78d47db61c63"/>
@@ -79,7 +79,7 @@
 				<reportElement x="48" y="9" width="1" height="20" uuid="297ca13f-4a4d-44d5-ba8a-33657d33f9e7"/>
 			</line>
 			<line>
-				<reportElement x="49" y="9" width="465" height="1" uuid="7170a4af-562c-47b5-86b0-080a1b683805"/>
+				<reportElement x="49" y="9" width="470" height="1" uuid="7170a4af-562c-47b5-86b0-080a1b683805"/>
 			</line>
 			<textField>
 				<reportElement isPrintRepeatedValues="false" x="54" y="11" width="179" height="17" uuid="8374c2c2-4421-4aad-a59c-b04bd752a14f"/>
@@ -89,13 +89,16 @@
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="88" y="29" width="427" height="23" uuid="8d75ba8c-58db-4f11-99fc-31abf00f2bb5"/>
+				<reportElement x="138" y="28" width="378" height="23" uuid="8d75ba8c-58db-4f11-99fc-31abf00f2bb5"/>
 				<subreportParameter name="cliente_id">
 					<subreportParameterExpression><![CDATA[$F{ID_Cliente}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["D:\\source\\dam\\di\\dam_di_ud5_t1\\src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas_sub_subreport1.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["D:\\source\\dam\\di\\dam_di_ud5_t1\\src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas_sub_Pedidos.jasper"]]></subreportExpression>
 			</subreport>
+			<line>
+				<reportElement x="49" y="28" width="470" height="1" uuid="209d312f-3e26-4b40-a8d3-7ec7b9d82be2"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

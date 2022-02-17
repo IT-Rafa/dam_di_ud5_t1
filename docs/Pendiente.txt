@@ -1,0 +1,3 @@
+Mostrar pdf con herramienta sistema
+Mostrar pdf con jasperViewer
+Guardar pdf

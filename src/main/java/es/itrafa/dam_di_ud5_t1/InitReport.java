@@ -290,7 +290,12 @@ public class InitReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Show a JasperViewer with the report of all bills/orders of all clients
+     * with one or many orders (without subreport)
+     *
+     * @param evt Click on show_allFact_noSub_jButton
+     */
     private void show_allFact_noSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_allFact_noSub_jButtonActionPerformed
         try {
             Connection conn = Model.getConection();
@@ -310,6 +315,12 @@ public class InitReport extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_show_allFact_noSub_jButtonActionPerformed
 
+    /**
+     * Show a JasperViewer with the report of all bills/orders of the selected
+     * get the id of cliente from text in selectClient_NoSub_jComboBox
+     *
+     * @param evt Click on show_FactCli_NoSub_jButton
+     */
     private void show_FactCli_NoSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_FactCli_NoSub_jButtonActionPerformed
         try {
             Connection conn = Model.getConection();
@@ -335,6 +346,12 @@ public class InitReport extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_show_FactCli_NoSub_jButtonActionPerformed
 
+    /**
+     * get all clients fom db and add them to the selectClient_NoSub_jComboBox.
+     * Build text to show id + client name in ComboBox
+     *
+     * @param evt
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         selectClient_NoSub_jComboBox.removeAllItems();
         try {
@@ -351,13 +368,18 @@ public class InitReport extends javax.swing.JFrame {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
-
+    /**
+     * Close program
+     * 
+     * @param evt Click on exit_jButton
+     */
     private void exit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exit_jButtonActionPerformed
     /**
-     *
-     * @param evt
+     * Only to check. Show the modified text of client selected
+     * 
+     * @param evt Select a item from selectClient_NoSub_jComboBox, including on init selection
      * @see formWindowOpened
      */
     private void selectClient_NoSub_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClient_NoSub_jComboBoxActionPerformed
@@ -368,13 +390,19 @@ public class InitReport extends javax.swing.JFrame {
         String clienteInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
 
         int id = Integer.parseInt(clienteInCombo.substring(0, i));
-        
+
         System.out.println(realName);
         System.out.println(id);
     }//GEN-LAST:event_selectClient_NoSub_jComboBoxActionPerformed
 
+    /**
+     * Show a JasperViewer with the report of all bills/orders of all clients
+     * with one or many orders (with subreport)
+     * 
+     * @param evt Click on show_AllFact_WithSub_jButton
+     */
     private void show_AllFact_WithSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_AllFact_WithSub_jButtonActionPerformed
-                try {
+        try {
             Connection conn = Model.getConection();
 
             String pathReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas_sub.jasper";
@@ -391,7 +419,11 @@ public class InitReport extends javax.swing.JFrame {
             Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_show_AllFact_WithSub_jButtonActionPerformed
-
+    /**
+     * Show a JasperViewer with the report of cant of sold articles.
+     * 
+     * @param evt Click on ventas_totales_jButton
+     */
     private void ventas_totales_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventas_totales_jButtonActionPerformed
         try {
             Connection conn = Model.getConection();
@@ -412,6 +444,8 @@ public class InitReport extends javax.swing.JFrame {
     }//GEN-LAST:event_ventas_totales_jButtonActionPerformed
 
     /**
+     * Init graphic interface
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
