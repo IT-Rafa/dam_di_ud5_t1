@@ -1,0 +1,12 @@
+Resumen enunciado
+
+Sin subreportes
+	1 Facturas = Listado Clientes con pedidos e importe total de cada pedido e importe total todos pedidos por cliente
+	
+
+	2 Facturas_cli = Listado Un cliente con sus pedidos e importe total de cada pedido
+
+	3 ventas totales = Listado Articulos con la cantidad vendida de cada uno en todos pedidos + gráfico
+
+Con subreportes
+	4 Facturas = Listado Clientes con pedidos e importe total de cada pedido

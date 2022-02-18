@@ -1,0 +1,40 @@
+Resumen enunciado
+
+Sin subreportes
+	1 Facturas = Listado Clientes con pedidos e importe total de cada pedido e importe total todos pedidos por cliente
+	
+
+	2 Facturas_cli = Listado Un cliente con sus pedidos e importe total de cada pedido
+
+	3 ventas totales = Listado Articulos con la cantidad vendida de cada uno en todos pedidos + gráfico
+
+Con subreportes
+	4 Facturas = Listado Clientes con pedidos e importe total de cada pedido
+	
+	
+Notas: 
+
+1º Apartado: Listado Clientes con pedidos e importe total de cada pedido e importe total todos pedidos por cliente
+
+	- Existe un pedido que no contiene nada (ninguna fila de detalles_pedido asociada)
+		Decido Usar LEFT JOIN con pedidos para que aparezcan todos los clientes con pedidos, aunque estos estén vacios.
+		Me parece una forma de comprobar pedidos incorrectos.
+
+2º Apartado: Listado Un cliente con sus pedidos e importe total de cada pedido
+
+	- Decidí incluir todos los reportes de todos los apartados en la aplicación, aunque según entiendo, solo se pide este.
+	- Para evitar poner clientes inexistentes, uso combobox que se rellena con datos de la bd fabrica
+	- Originalmente buscaba el cliente por nombre, para ser reconocible en la interfaz, 
+		lo que por cierto, obliga a añadir las comillas al pasar el dato con el parámetro.
+		Como el enunciado indica explicitamente usar el ID_Cliente, puse ambos datos en el comboBox y al hacer el reporte
+		el id es "extraido" del string del combobox
+		
+3º Apartado: Listado Articulos con la cantidad vendida de cada uno en todos pedidos + gráfico
+
+	- Como todos los artículos fueron vendidos alguna vez, añadí uno nuevo, para confirmar que todos los artículos,
+		incluso los no vendidos aparezcan tanto en la gráfica como el listado.
+		
+4º Apartado: Listado Clientes con pedidos e importe total de cada pedido. Usando subinformes
+	
+	- En este caso incluyo todos los clientes, pedidos, etc. Si no tienen contenido, los subreportes apareceran vacios.
+	

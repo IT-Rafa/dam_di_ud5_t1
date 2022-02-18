@@ -303,84 +303,112 @@ public class InitReport extends javax.swing.JFrame {
      * @param evt Click on show_FactCli_NoSub_jButton
      */
     private void allReports_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allReports_jButtonActionPerformed
+        // conection to db
         Connection conn = null;
+        // path to pdf output folder
         String pathPdfOutput = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\output_reports\\";
+        // path to jasperReport folder (jrxml & jasper)
         String pathJReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\";
+        // full path to a jasperReport file
         String fullPathJReport = null;
+        // full path to a pdf file
         String fullPathPdfOutput = null;
+        // get db data as hash map
         Map param = null;
 
         try {
+            // connect to db
             conn = Model.getConection();
 
+            // up on button clicked in reports gui
             if (evt.getSource()
                     == show_allFact_noSub_jButton) {
                 // *** EJ 1 todas facturas todos clientes ***
+                // store jasper file path
                 fullPathJReport = pathJReport + "facturas.jasper";
+                // store pdf file path
                 fullPathPdfOutput = pathPdfOutput + "Facturas.pdf";
 
             } else if (evt.getSource()
                     == show_FactCli_NoSub_jButton) {
                 // *** EJ 2 todas facturas un cliente ***
-
+                // store jasper file path
                 fullPathJReport = pathJReport + "facturas_Cli.jasper";
-
+                
+                // prepare param
                 param = new HashMap();
+                // get cliente from combobox [ID_Cliente] + " | " + [Nombre_Cliente]
                 String clienteInCombo = selectClient_jComboBox.getSelectedItem().toString();
+                // extract id of cliente from combobox text
                 int i = clienteInCombo.indexOf(" | ");
                 Integer id = Integer.parseInt(clienteInCombo.substring(0, i));
+                // Create name of pdf (one for client, overwritten when update)
                 fullPathPdfOutput = pathPdfOutput + "Facturas_cli_" + id + ".pdf";
+                
+                // preparte param to JaperPrint (FullFill Report)
                 param.put("idToFind", id);
 
             } else if (evt.getSource()
                     == show_ventas_totales_jButton) {
                 // *** EJ 3 todas ventas artículos ***
+                // store jasper file path
                 fullPathJReport = pathJReport + "ventas_totales.jasper";
+                // store pdf file path
                 fullPathPdfOutput = pathPdfOutput + "Ventas_totales.pdf";
 
             } else if (evt.getSource()
                     == show_AllFact_WithSub_jButton) {
                 // *** EJ 4 todas facturas todos clientes con subinformes ***
+                // store jasper file path
                 fullPathJReport = pathJReport + "facturas_sub.jasper";
+                // store pdf file path
                 fullPathPdfOutput = pathPdfOutput + "facturas_sub.pdf";
             }
-
-            String[] options = new String[]{"Ver con JasperView", "Ver con Visor PDF por defecto", "Solo Guardar", "Cancelar"};
-
+            // Options for output
+            String[] options = new String[]{
+                "Ver con JasperView", "Ver con Visor PDF por defecto",
+                "Solo Guardar", "Cancelar"};
+            // show options for output and store the selected one
             int op = JOptionPane.showOptionDialog(null, "Elige una opción", "Opciones de informe",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[0]);
 
+            // Prepare Report from .jasper
             JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(fullPathJReport);
+            // fullfill report
             JasperPrint jprint = JasperFillManager.fillReport(fullPathJReport, param, conn);
 
+            // upon output selected
             switch (op) {
-                case 0:
+                case 0: // Ver con JasperView
                     JasperViewer jaspView = new JasperViewer(jprint, false);
                     jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     jaspView.setVisible(true);
                     break;
-                case 1:
+                case 1: // Ver con Visor PDF por defecto (included pdf file creation)
                     JasperExportManager.exportReportToPdfFile(jprint, fullPathPdfOutput);
-//Abre el archivo PDF generado
+                    //Abre el archivo PDF generado
                     File path = new File(fullPathPdfOutput);
                     Desktop.getDesktop().open(path);
                     break;
-                case 2:
+                case 2: // Solo Guardar
                     JasperExportManager.exportReportToPdfFile(jprint, fullPathPdfOutput);
                     break;
-                default:
+                default: // cancel
                     break;
             }
+            conn.close();
 
-        } catch (JRException | IOException ex) {
+        } catch (JRException | IOException | SQLException ex) {
             Logger.getLogger(InitReport.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_allReports_jButtonActionPerformed
 
     /**
-     * get all clients fom db and add them to the selectClient_NoSub_jComboBox.
+     * Fullfill comboBox with clients data.
+     *
+     * Get all clients fom db and add them to the selectClient_NoSub_jComboBox.
      * Build text to show id + client name in ComboBox
      *
      * @param evt
@@ -388,15 +416,20 @@ public class InitReport extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         selectClient_jComboBox.removeAllItems();
         try {
+            // get client data from db
             Connection conn = Model.getConection();
+            // send sql query to db and save result
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT ID_Cliente, Nombre FROM clientes");
 
+            // go throw rows
             while (rs.next()) {
                 int cliID = rs.getInt("ID_Cliente");
                 String cliName = rs.getString("Nombre");
+                // add data to combobox
                 selectClient_jComboBox.addItem(cliID + " | " + cliName);
             }
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(InitReport.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -410,6 +443,7 @@ public class InitReport extends javax.swing.JFrame {
     private void exit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exit_jButtonActionPerformed
+
     /**
      * Only to check. Show the modified text of client selected
      *
@@ -425,9 +459,9 @@ public class InitReport extends javax.swing.JFrame {
         String clienteInCombo = selectClient_jComboBox.getSelectedItem().toString();
 
         int id = Integer.parseInt(clienteInCombo.substring(0, i));
-
-        System.out.println(realName);
-        System.out.println(id);
+        String logMsg = "Selection in ComboBox: (Id_cli: " + id + "; Name: " + realName + ")";
+        Logger.getLogger(InitReport.class
+                .getName()).log(Level.INFO, logMsg);
     }//GEN-LAST:event_selectClient_jComboBoxActionPerformed
 
     /**
