@@ -228,13 +228,6 @@ LEFT JOIN detalle_pedidos
 				</textElement>
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="48" width="413" height="20" uuid="bec00b5e-d207-4e9f-881e-4fb651e4517a"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="161" height="48" uuid="ff316bcd-7b91-4961-b5d5-6bb087e05964"/>
 				<textElement>
@@ -249,6 +242,34 @@ LEFT JOIN detalle_pedidos
 				</textElement>
 				<text><![CDATA[(Todos Clientes)]]></text>
 			</staticText>
+			<textField pattern="HH:mm:ss">
+				<reportElement x="168" y="48" width="100" height="20" uuid="f8fe0105-ea72-4490-a28f-1748e73eae7b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="138" y="48" width="30" height="20" uuid="96e630c6-0f80-4b9d-a83f-a136425376f2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a las ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="48" width="56" height="20" uuid="1701722b-be89-4b5c-beb3-65e38bdfa0d7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Creado el]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="68" y="48" width="65" height="20" uuid="27971d4b-7db2-431e-8a0b-6b56cf3a6287"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

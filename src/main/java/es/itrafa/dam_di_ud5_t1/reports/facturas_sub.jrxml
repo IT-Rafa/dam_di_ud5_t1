@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas_sub" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec9ed4a1-58cc-410c-a967-a310d44bc577">
-	<property name="ireport.zoom" value="6.115909044841475"/>
-	<property name="ireport.x" value="2574"/>
-	<property name="ireport.y" value="838"/>
+	<property name="ireport.zoom" value="1.6105100000000043"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="68"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["D:\\source\\dam\\di\\dam_di_ud5_t1\\src\\Reports\\"]]></defaultValueExpression>
 	</parameter>
@@ -37,19 +37,12 @@
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="10" width="161" height="48" uuid="2cd4b11b-2744-4f3c-a721-1c6f9a945efa"/>
+				<reportElement x="0" y="10" width="171" height="48" uuid="2cd4b11b-2744-4f3c-a721-1c6f9a945efa"/>
 				<textElement>
 					<font size="36" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Facturas]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="10" y="58" width="401" height="20" uuid="fab5ba32-62f3-4874-bc4e-8c5b1fc6a884"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="171" y="30" width="220" height="28" uuid="d68436ef-2cd9-484f-badd-4cfa071d93a1"/>
 				<textElement>
@@ -57,6 +50,34 @@
 				</textElement>
 				<text><![CDATA[(Todos Clientes con subinformes)]]></text>
 			</staticText>
+			<textField pattern="HH:mm:ss">
+				<reportElement x="173" y="58" width="100" height="20" uuid="3d722d17-63bb-4ff2-9a7c-a993ef61223f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="143" y="58" width="30" height="20" uuid="691c2068-e7d0-4648-974b-215b8d7cd7e2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a las ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="58" width="56" height="20" uuid="9623ba48-0bc6-47d4-a732-2c9c6bf9e1b3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Creado el]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="73" y="58" width="65" height="20" uuid="d8dbbf28-1784-4143-b8fd-47cf9f546860"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

@@ -1,0 +1,1 @@
+1º Instalar MySql y crear base datos fabrica	- Usar script incluido en enunciado2º Añadir plugins Jasper para netBeans 12.5	- Indicado en enunciado	3º Crear proyecto netBeans 12.54º Asignar a github5º Apartado 1: Crear reporte facturas	- Mostrar cada cliente con sus pedidos.	- Cada pedido muestra su total

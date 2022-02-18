@@ -4,6 +4,9 @@
  */
 package es.itrafa.dam_di_ud5_t1;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -47,11 +52,11 @@ public class InitReport extends javax.swing.JFrame {
         noSub_jPanel = new javax.swing.JPanel();
         factNoSub_jPanel = new javax.swing.JPanel();
         show_allFact_noSub_jButton = new javax.swing.JButton();
-        selectClient_NoSub_jComboBox = new javax.swing.JComboBox<>();
+        selectClient_jComboBox = new javax.swing.JComboBox<>();
         show_FactCli_NoSub_jButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         artNoSubjPanel = new javax.swing.JPanel();
-        ventas_totales_jButton = new javax.swing.JButton();
+        show_ventas_totales_jButton = new javax.swing.JButton();
         withSub_jPanel = new javax.swing.JPanel();
         noSub_jPanel1 = new javax.swing.JPanel();
         show_AllFact_WithSub_jButton = new javax.swing.JButton();
@@ -83,13 +88,13 @@ public class InitReport extends javax.swing.JFrame {
         show_allFact_noSub_jButton.setText("Todas Facturas");
         show_allFact_noSub_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_allFact_noSub_jButtonActionPerformed(evt);
+                allReports_jButtonActionPerformed(evt);
             }
         });
 
-        selectClient_NoSub_jComboBox.addActionListener(new java.awt.event.ActionListener() {
+        selectClient_jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectClient_NoSub_jComboBoxActionPerformed(evt);
+                selectClient_jComboBoxActionPerformed(evt);
             }
         });
 
@@ -97,7 +102,7 @@ public class InitReport extends javax.swing.JFrame {
         show_FactCli_NoSub_jButton.setText("Facturas por Cliente");
         show_FactCli_NoSub_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_FactCli_NoSub_jButtonActionPerformed(evt);
+                allReports_jButtonActionPerformed(evt);
             }
         });
 
@@ -111,7 +116,7 @@ public class InitReport extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(factNoSub_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(show_FactCli_NoSub_jButton)
-                    .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectClient_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(show_allFact_noSub_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(factNoSub_jPanelLayout.createSequentialGroup()
@@ -127,7 +132,7 @@ public class InitReport extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectClient_NoSub_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectClient_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(show_FactCli_NoSub_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                 .addContainerGap())
@@ -135,11 +140,11 @@ public class InitReport extends javax.swing.JFrame {
 
         artNoSubjPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Artículos"));
 
-        ventas_totales_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ventas_totales_jButton.setText("Ventas Totales");
-        ventas_totales_jButton.addActionListener(new java.awt.event.ActionListener() {
+        show_ventas_totales_jButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        show_ventas_totales_jButton.setText("Ventas Totales");
+        show_ventas_totales_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ventas_totales_jButtonActionPerformed(evt);
+                allReports_jButtonActionPerformed(evt);
             }
         });
 
@@ -149,14 +154,14 @@ public class InitReport extends javax.swing.JFrame {
             artNoSubjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(artNoSubjPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ventas_totales_jButton)
+                .addComponent(show_ventas_totales_jButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         artNoSubjPanelLayout.setVerticalGroup(
             artNoSubjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(artNoSubjPanelLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(ventas_totales_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(show_ventas_totales_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -189,7 +194,7 @@ public class InitReport extends javax.swing.JFrame {
         show_AllFact_WithSub_jButton.setText("Todas Facturas");
         show_AllFact_WithSub_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_AllFact_WithSub_jButtonActionPerformed(evt);
+                allReports_jButtonActionPerformed(evt);
             }
         });
 
@@ -290,30 +295,6 @@ public class InitReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    /**
-     * Show a JasperViewer with the report of all bills/orders of all clients
-     * with one or many orders (without subreport)
-     *
-     * @param evt Click on show_allFact_noSub_jButton
-     */
-    private void show_allFact_noSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_allFact_noSub_jButtonActionPerformed
-        try {
-            Connection conn = Model.getConection();
-
-            String pathReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas.jasper";
-            JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
-
-            JasperPrint jprint = JasperFillManager.fillReport(pathReport, null, conn);
-            JasperViewer jaspView = new JasperViewer(jprint, false);
-
-            jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-            jaspView.setVisible(true);
-
-        } catch (JRException ex) {
-            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_show_allFact_noSub_jButtonActionPerformed
 
     /**
      * Show a JasperViewer with the report of all bills/orders of the selected
@@ -321,30 +302,82 @@ public class InitReport extends javax.swing.JFrame {
      *
      * @param evt Click on show_FactCli_NoSub_jButton
      */
-    private void show_FactCli_NoSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_FactCli_NoSub_jButtonActionPerformed
+    private void allReports_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allReports_jButtonActionPerformed
+        Connection conn = null;
+        String pathPdfOutput = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\output_reports\\";
+        String pathJReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\";
+        String fullPathJReport = null;
+        String fullPathPdfOutput = null;
+        Map param = null;
+
         try {
-            Connection conn = Model.getConection();
+            conn = Model.getConection();
 
-            String pathReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas_Cli.jasper";
-            Map param = new HashMap();
-            String clienteInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
-            int i = clienteInCombo.indexOf(" | ");
-            Integer id = Integer.parseInt(clienteInCombo.substring(0, i));
-            param.put("idToFind", id);
+            if (evt.getSource()
+                    == show_allFact_noSub_jButton) {
+                // *** EJ 1 todas facturas todos clientes ***
+                fullPathJReport = pathJReport + "facturas.jasper";
+                fullPathPdfOutput = pathPdfOutput + "Facturas.pdf";
 
-            JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
+            } else if (evt.getSource()
+                    == show_FactCli_NoSub_jButton) {
+                // *** EJ 2 todas facturas un cliente ***
 
-            JasperPrint jprint = JasperFillManager.fillReport(pathReport, param, conn);
-            JasperViewer jaspView = new JasperViewer(jprint, false);
+                fullPathJReport = pathJReport + "facturas_Cli.jasper";
 
-            jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                param = new HashMap();
+                String clienteInCombo = selectClient_jComboBox.getSelectedItem().toString();
+                int i = clienteInCombo.indexOf(" | ");
+                Integer id = Integer.parseInt(clienteInCombo.substring(0, i));
+                fullPathPdfOutput = pathPdfOutput + "Facturas_cli_" + id + ".pdf";
+                param.put("idToFind", id);
 
-            jaspView.setVisible(true);
+            } else if (evt.getSource()
+                    == show_ventas_totales_jButton) {
+                // *** EJ 3 todas ventas artículos ***
+                fullPathJReport = pathJReport + "ventas_totales.jasper";
+                fullPathPdfOutput = pathPdfOutput + "Ventas_totales.pdf";
 
-        } catch (JRException ex) {
-            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
+            } else if (evt.getSource()
+                    == show_AllFact_WithSub_jButton) {
+                // *** EJ 4 todas facturas todos clientes con subinformes ***
+                fullPathJReport = pathJReport + "facturas_sub.jasper";
+                fullPathPdfOutput = pathPdfOutput + "facturas_sub.pdf";
+            }
+
+            String[] options = new String[]{"Ver con JasperView", "Ver con Visor PDF por defecto", "Solo Guardar", "Cancelar"};
+
+            int op = JOptionPane.showOptionDialog(null, "Elige una opción", "Opciones de informe",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[0]);
+
+            JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(fullPathJReport);
+            JasperPrint jprint = JasperFillManager.fillReport(fullPathJReport, param, conn);
+
+            switch (op) {
+                case 0:
+                    JasperViewer jaspView = new JasperViewer(jprint, false);
+                    jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    jaspView.setVisible(true);
+                    break;
+                case 1:
+                    JasperExportManager.exportReportToPdfFile(jprint, fullPathPdfOutput);
+//Abre el archivo PDF generado
+                    File path = new File(fullPathPdfOutput);
+                    Desktop.getDesktop().open(path);
+                    break;
+                case 2:
+                    JasperExportManager.exportReportToPdfFile(jprint, fullPathPdfOutput);
+                    break;
+                default:
+                    break;
+            }
+
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(InitReport.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_show_FactCli_NoSub_jButtonActionPerformed
+    }//GEN-LAST:event_allReports_jButtonActionPerformed
 
     /**
      * get all clients fom db and add them to the selectClient_NoSub_jComboBox.
@@ -353,7 +386,7 @@ public class InitReport extends javax.swing.JFrame {
      * @param evt
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        selectClient_NoSub_jComboBox.removeAllItems();
+        selectClient_jComboBox.removeAllItems();
         try {
             Connection conn = Model.getConection();
             Statement st = conn.createStatement();
@@ -362,15 +395,16 @@ public class InitReport extends javax.swing.JFrame {
             while (rs.next()) {
                 int cliID = rs.getInt("ID_Cliente");
                 String cliName = rs.getString("Nombre");
-                selectClient_NoSub_jComboBox.addItem(cliID + " | " + cliName);
+                selectClient_jComboBox.addItem(cliID + " | " + cliName);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InitReport.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
     /**
      * Close program
-     * 
+     *
      * @param evt Click on exit_jButton
      */
     private void exit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jButtonActionPerformed
@@ -378,74 +412,27 @@ public class InitReport extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_jButtonActionPerformed
     /**
      * Only to check. Show the modified text of client selected
-     * 
-     * @param evt Select a item from selectClient_NoSub_jComboBox, including on init selection
+     *
+     * @param evt Select a item from selectClient_NoSub_jComboBox, including on
+     * init selection
      * @see formWindowOpened
      */
-    private void selectClient_NoSub_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClient_NoSub_jComboBoxActionPerformed
-        String nameInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
+    private void selectClient_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClient_jComboBoxActionPerformed
+        String nameInCombo = selectClient_jComboBox.getSelectedItem().toString();
         int i = nameInCombo.indexOf(" | ");
 
         String realName = (String) nameInCombo.subSequence(i + 3, nameInCombo.length());
-        String clienteInCombo = selectClient_NoSub_jComboBox.getSelectedItem().toString();
+        String clienteInCombo = selectClient_jComboBox.getSelectedItem().toString();
 
         int id = Integer.parseInt(clienteInCombo.substring(0, i));
 
         System.out.println(realName);
         System.out.println(id);
-    }//GEN-LAST:event_selectClient_NoSub_jComboBoxActionPerformed
-
-    /**
-     * Show a JasperViewer with the report of all bills/orders of all clients
-     * with one or many orders (with subreport)
-     * 
-     * @param evt Click on show_AllFact_WithSub_jButton
-     */
-    private void show_AllFact_WithSub_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_AllFact_WithSub_jButtonActionPerformed
-        try {
-            Connection conn = Model.getConection();
-
-            String pathReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\facturas_sub.jasper";
-            JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
-
-            JasperPrint jprint = JasperFillManager.fillReport(pathReport, null, conn);
-            JasperViewer jaspView = new JasperViewer(jprint, false);
-
-            jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-            jaspView.setVisible(true);
-
-        } catch (JRException ex) {
-            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_show_AllFact_WithSub_jButtonActionPerformed
-    /**
-     * Show a JasperViewer with the report of cant of sold articles.
-     * 
-     * @param evt Click on ventas_totales_jButton
-     */
-    private void ventas_totales_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventas_totales_jButtonActionPerformed
-        try {
-            Connection conn = Model.getConection();
-
-            String pathReport = "src\\main\\java\\es\\itrafa\\dam_di_ud5_t1\\reports\\ventas_totales.jasper";
-            JasperReport allFacturasReport = (JasperReport) JRLoader.loadObjectFromFile(pathReport);
-
-            JasperPrint jprint = JasperFillManager.fillReport(pathReport, null, conn);
-            JasperViewer jaspView = new JasperViewer(jprint, false);
-
-            jaspView.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-            jaspView.setVisible(true);
-
-        } catch (JRException ex) {
-            Logger.getLogger(InitReport.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_ventas_totales_jButtonActionPerformed
+    }//GEN-LAST:event_selectClient_jComboBoxActionPerformed
 
     /**
      * Init graphic interface
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -462,13 +449,17 @@ public class InitReport extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InitReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InitReport.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InitReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InitReport.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InitReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InitReport.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InitReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InitReport.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -490,11 +481,12 @@ public class InitReport extends javax.swing.JFrame {
     private javax.swing.JLabel mainTitle_jLabel;
     private javax.swing.JPanel noSub_jPanel;
     private javax.swing.JPanel noSub_jPanel1;
-    private javax.swing.JComboBox<String> selectClient_NoSub_jComboBox;
+    private javax.swing.JComboBox<String> selectClient_jComboBox;
     private javax.swing.JButton show_AllFact_WithSub_jButton;
     private javax.swing.JButton show_FactCli_NoSub_jButton;
     private javax.swing.JButton show_allFact_noSub_jButton;
-    private javax.swing.JButton ventas_totales_jButton;
+    private javax.swing.JButton show_ventas_totales_jButton;
     private javax.swing.JPanel withSub_jPanel;
     // End of variables declaration//GEN-END:variables
+
 }
